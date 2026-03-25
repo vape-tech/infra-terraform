@@ -1,0 +1,22 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run terraform init
+        run: |
+          echo "Running terraform init"
+          terraform init
+      - name: Run terraform apply
+        run: |
+          echo "Running terraform apply"
+          terraform apply -auto-approve
